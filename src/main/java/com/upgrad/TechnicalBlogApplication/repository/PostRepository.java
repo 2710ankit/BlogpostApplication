@@ -37,15 +37,15 @@ public class PostRepository {
         }
     }
 
-    public void deletePost(Integer postId){
-        EntityManager entityManager= entityManagerFactory.createEntityManager();
-        EntityTransaction transaction= entityManager.getTransaction();
+    public void deletePost(Integer postId) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             Post post = entityManager.find(Post.class, postId);
             entityManager.remove(post);
-        }
-        catch (Exception e){
+            transaction.commit();
+        } catch (Exception e) {
             System.out.println(e);
             transaction.rollback();
         }
