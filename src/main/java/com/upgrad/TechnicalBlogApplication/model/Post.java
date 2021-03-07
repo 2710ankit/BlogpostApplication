@@ -9,6 +9,9 @@ import java.util.Date;
 @Table(name = "posts")
 public class Post {
     // components of the post
+    public Post(){
+        System.out.println("** POst**");
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +33,9 @@ public class Post {
 
     @Column(name = "date")
     private Date date;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
     // Getters and Setter
     public String getTitle() {
